@@ -2,6 +2,8 @@
 
 #include <WPILib.h>
 
+#include "commands/autonomous/autonomous.hpp"
+
 class Robot : public frc::IterativeRobot {
 public:
 	void RobotInit();
@@ -10,8 +12,6 @@ public:
 	void AutonomousPeriodic();
 	void TeleopInit();
 	void TeleopPeriodic();
-private:
-//	ADXRS450_Gyro *gyro;
 };
 
 

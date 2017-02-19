@@ -8,8 +8,8 @@ namespace Ports {
 						LEFT_MIDDLE_MOTOR = 46,
 						LEFT_REAR_MOTOR = 41,
 						RIGHT_FRONT_MOTOR = 39,
-						RIGHT_MIDDLE_MOTOR = 44,
-						RIGHT_REAR_MOTOR = 43;
+						RIGHT_MIDDLE_MOTOR = 43,
+						RIGHT_REAR_MOTOR = 44;
 		// Ids for CANTalons on Shooter
 		const uint32_t	SHOOTER_TOP = 38, // 6
 						SHOOTER_BOTTOM = 6; //38

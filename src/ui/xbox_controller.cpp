@@ -16,11 +16,11 @@ Xbox_Controller::Xbox_Controller(uint32_t port) :
 }
 
 float Xbox_Controller::get_left_x() {
-	return deadzone_value( controller->GetRawAxis(1), 0.3);
+	return deadzone_value( controller->GetRawAxis(0), 0.3);
 }
 
 float Xbox_Controller::get_left_y() {
-	return deadzone_value( controller->GetRawAxis(2), 0.3);
+	return deadzone_value( controller->GetRawAxis(1), 0.3);
 }
 
 float Xbox_Controller::get_right_x() {
