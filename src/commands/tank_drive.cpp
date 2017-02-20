@@ -10,13 +10,13 @@ Tank_Drive::Tank_Drive() {
 
 void Tank_Drive::Execute() {
 	float left, right;
-//	if (UI::controller->) {
-//		left = -1 * UI::right_joystick->get_y();
-//		right = -1 * UI::left_joystick->get_y();
-//	} else {
+	if (UI::launchpad->SWITCH_1->Get()) {
+		left = -1 * UI::right_joystick->get_y();
+		right = -1 * UI::left_joystick->get_y();
+	} else {
 		left = UI::left_joystick->get_y();
 		right = UI::right_joystick->get_y();
-//	}
+	}
 
 	Subsystems::drive_base->set_motors_normalized(left, right);
 

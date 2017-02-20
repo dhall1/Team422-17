@@ -4,20 +4,23 @@
 
 class Drive_Straight : public Command {
 public:
-	Drive_Straight(float distance);
+	Drive_Straight(int distance, float speed);
 	void Initialize();
-	void Execute() {};
+	void Execute();
 	bool IsFinished();
-	void Interrupted() {};
-	void End() {};
+	void Interrupted();
+	void End();
 private:
-	float ticks;
-	const double PI = 3.141592653589793238463;
-	// Diameter of wheels in inches
-	const double DIAMETER = 4;
-	const double TICK_PER_REVOLUTION = 12;
-	const double CIRCUMFERENCE = PI * DIAMETER;
 	float distance_to_ticks(float input);
+
+	int ticks=0;
+	float left_speed=0.0, right_speed = 0.0 ;
+	bool is_finished = 0;
+
+	const double PI = 3.141592653589793238463;
+	const double DIAMETER = 4;
+	const double TICK_PER_REVOLUTION = 128;
+	const double CIRCUMFERENCE = PI * DIAMETER;
 };
 
 

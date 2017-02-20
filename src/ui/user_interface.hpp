@@ -7,7 +7,7 @@
 namespace UI {
 	extern Attack_3 *left_joystick;
 	extern Attack_3 *right_joystick;
-//	extern Launchpad *launchpad;
+	extern Launchpad *launchpad;
 	extern Xbox_Controller *controller;
 
 	void initialize();

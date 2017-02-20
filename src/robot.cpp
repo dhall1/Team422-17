@@ -6,6 +6,7 @@
 void Robot::RobotInit() {
 	Subsystems::initialize();
 	UI::initialize();
+	autonomous = new Autonomous();
 }
 
 void Robot::DisabledInit() {
@@ -13,15 +14,17 @@ void Robot::DisabledInit() {
 }
 
 void Robot::AutonomousInit() {
-
+	Subsystems::drive_base->reset_gyro();
+	Subsystems::drive_base->reset_encoders();
+	autonomous->Start();
 }
 
 void Robot::AutonomousPeriodic() {
-
+	Scheduler::GetInstance()->Run();
 }
 
 void Robot::TeleopInit() {
-
+	autonomous->Cancel();
 }
 
 void Robot::TeleopPeriodic() {

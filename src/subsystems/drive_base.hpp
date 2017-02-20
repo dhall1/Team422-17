@@ -8,8 +8,8 @@ public:
 	Drive_Base();
 	void InitDefaultCommand();
 	void set_motors_normalized(float left, float right);
-	float get_left_encoder_position();
-	float get_right_encoder_position();
+	int get_left_encoder_position();
+	int get_right_encoder_position();
 	float get_left_encoder_speed();
 	float get_right_encoder_speed();
 	void reset_encoders();

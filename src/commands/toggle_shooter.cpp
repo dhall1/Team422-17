@@ -1,14 +1,13 @@
-#include "prepare_shooter.hpp"
-
+#include "toggle_shooter.hpp"
 #include "../subsystems/subsystems.hpp"
 
-Prepare_Shooter::Prepare_Shooter(bool on) :
-on (on) {
+Toggle_Shooter::Toggle_Shooter(bool is_on) :
+is_on (is_on) {
 	Requires(Subsystems::shooter);
 }
 
-void Prepare_Shooter::Initialize() {
-	if (on) {
+void Toggle_Shooter::Initialize() {
+	if (is_on) {
 		Subsystems::shooter->set_top_speed(.2);
 		Subsystems::shooter->set_bottom_speed(0.5);
 	} else {
@@ -17,6 +16,6 @@ void Prepare_Shooter::Initialize() {
 	}
 }
 
-bool Prepare_Shooter::IsFinished() {
+bool Toggle_Shooter::IsFinished() {
 	return true;
 }

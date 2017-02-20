@@ -2,16 +2,16 @@
 
 #include <WPILib.h>
 
-class Prepare_Shooter : public frc::Command {
+class Toggle_Lift : public frc::Command {
 public:
-	Prepare_Shooter(bool on);
+	Toggle_Lift(bool is_on);
 	void Initialize();
 	void Execute() {};
 	bool IsFinished();
 	void Interrupted() {};
 	void End() {};
 private:
-	bool on;
+	bool is_on;
 };
 
 

@@ -45,11 +45,11 @@ void Drive_Base::set_motors_normalized(float left, float right) {
 	right_middle_motor->Set(right);
 }
 
-float Drive_Base::get_left_encoder_position() {
+int Drive_Base::get_left_encoder_position() {
 	return left_middle_motor->GetEncPosition();
 }
 
-float Drive_Base::get_right_encoder_position() {
+int Drive_Base::get_right_encoder_position() {
 	return right_middle_motor->GetEncPosition();
 }
 

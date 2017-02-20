@@ -2,15 +2,17 @@
 
 #include <WPILib.h>
 
-class Lift_Command : public frc::Command {
+class Turn : public frc::Command {
 public:
-	Lift_Command(bool on);
+	Turn(float angle);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void Interrupted();
 	void End();
 private:
-	bool on;
+	float angle;
+	const double PI = 3.141592653589793238463;
 };
+
 

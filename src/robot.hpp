@@ -12,6 +12,8 @@ public:
 	void AutonomousPeriodic();
 	void TeleopInit();
 	void TeleopPeriodic();
+private:
+	Autonomous *autonomous;
 };
 
 
