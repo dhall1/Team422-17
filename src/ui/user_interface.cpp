@@ -5,6 +5,7 @@
 #include "../commands/toggle_shooter.hpp"
 #include "../commands/change_shooter_speed.hpp"
 #include "../commands/set_gear_intake.hpp"
+#include "../commands/autonomous/turn.hpp"
 
 Attack_3 *UI::left_joystick = nullptr;
 Attack_3 *UI::right_joystick = nullptr;
@@ -37,4 +38,7 @@ void UI::initialize() {
 //	launchpad->SWITCH_2->WhenReleased(new Toggle_Shooter(false));
 	launchpad->SWITCH_3->WhenPressed(new Toggle_Lift(true));
 	launchpad->SWITCH_3->WhenReleased(new Toggle_Lift(false));
+
+	launchpad->PANEL_TOP_LEFT->WhenPressed(new Turn(90));
+	launchpad->PANEL_TOP_MID->WhenPressed(new Turn(-90));
 }

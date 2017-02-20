@@ -12,7 +12,10 @@ public:
 	void End();
 private:
 	float angle;
-	const double PI = 3.141592653589793238463;
+	bool direction;
+	float left_speed;
+	float right_speed;
+	bool in_range(float target, float error, float value);
 };
 
 
