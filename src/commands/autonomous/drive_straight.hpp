@@ -11,16 +11,10 @@ public:
 	void Interrupted();
 	void End();
 private:
-	float distance_to_ticks(float input);
-
-	int ticks=0;
-	float left_speed=0.0, right_speed = 0.0 ;
-	bool is_finished = 0;
-
-	const double PI = 3.141592653589793238463;
-	const double DIAMETER = 4;
-	const double TICK_PER_REVOLUTION = 128;
-	const double CIRCUMFERENCE = PI * DIAMETER;
+	int ticks;
+	float angle;
+	float left_speed, right_speed;
+	bool is_finished;
 };
 
 
