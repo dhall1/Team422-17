@@ -8,8 +8,8 @@ is_on (is_on) {
 
 void Toggle_Shooter::Initialize() {
 	if (is_on) {
-		Subsystems::shooter->set_top_speed(.2);
-		Subsystems::shooter->set_bottom_speed(0.5);
+		Subsystems::shooter->set_top_speed(.5);
+		Subsystems::shooter->set_bottom_speed(0.2);
 	} else {
 		Subsystems::shooter->set_top_speed(0);
 		Subsystems::shooter->set_bottom_speed(0);
