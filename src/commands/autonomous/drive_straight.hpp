@@ -4,17 +4,17 @@
 
 class Drive_Straight : public Command {
 public:
-	Drive_Straight(int distance, float speed);
+	Drive_Straight(int distance);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void Interrupted();
 	void End();
 private:
-	int ticks;
+	int distance;
+	bool direction;
 	float angle;
 	float left_speed, right_speed;
-	bool is_finished;
 };
 
 

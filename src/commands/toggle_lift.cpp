@@ -9,7 +9,7 @@ is_on (is_on) {
 
 void Toggle_Lift::Initialize() {
 	if (is_on) {
-		Subsystems::lift->set_motor(0.5);
+		Subsystems::lift->set_motor(0.85);
 	} else {
 		Subsystems::lift->set_motor(0);
 	}

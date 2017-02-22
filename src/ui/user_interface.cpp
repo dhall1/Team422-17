@@ -4,6 +4,7 @@
 #include "../commands/toggle_lift.hpp"
 #include "../commands/toggle_shooter.hpp"
 #include "../commands/change_shooter_speed.hpp"
+#include "../commands/set_ball_intake.hpp"
 #include "../commands/set_gear_intake.hpp"
 #include "../commands/autonomous/turn.hpp"
 
@@ -32,13 +33,15 @@ void UI::initialize() {
 
 	controller->B->WhenPressed(new Set_Gear_Intake(DoubleSolenoid::Value::kForward));
 	controller->A->WhenPressed(new Set_Gear_Intake(DoubleSolenoid::Value::kReverse));
-	controller->Y->WhenPressed(new Toggle_Roller(true));
-	controller->X->WhenPressed(new Toggle_Roller(false));
-	launchpad->SWITCH_2->WhenPressed(new Toggle_Shooter(true));
-//	launchpad->SWITCH_2->WhenReleased(new Toggle_Shooter(false));
+	controller->Y->WhenPressed(new Set_Ball_Intake(DoubleSolenoid::Value::kForward));
+	controller->X->WhenPressed(new Set_Ball_Intake(DoubleSolenoid::Value::kReverse));
+	launchpad->SWITCH_2->WhenPressed(new Toggle_Roller(true));
+	launchpad->SWITCH_2->WhenReleased(new Toggle_Roller(false));
 	launchpad->SWITCH_3->WhenPressed(new Toggle_Lift(true));
 	launchpad->SWITCH_3->WhenReleased(new Toggle_Lift(false));
+	launchpad->SWITCH_4->WhenPressed(new Toggle_Shooter(true));
+	launchpad->SWITCH_4->WhenPressed(new Toggle_Shooter(false));
 
-	launchpad->PANEL_TOP_LEFT->WhenPressed(new Turn(90));
-	launchpad->PANEL_TOP_MID->WhenPressed(new Turn(-90));
+	launchpad->PANEL_TOP_LEFT->WhenPressed(new Turn(-90));
+	launchpad->PANEL_TOP_MID->WhenPressed(new Turn(90));
 }

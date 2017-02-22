@@ -8,8 +8,8 @@ Lift *Subsystems::lift = nullptr;
 Shooter *Subsystems::shooter = nullptr;
 
 void Subsystems::initialize() {
-	ball_intake = new Ball_Intake();
 	compressor_system = new Compressor_System();
+	ball_intake = new Ball_Intake();
 	drive_base = new Drive_Base();
 	gear_intake = new Gear_Intake();
 	lift = new Lift();

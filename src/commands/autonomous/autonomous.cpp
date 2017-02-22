@@ -5,12 +5,7 @@
 #include "turn.hpp"
 
 Autonomous::Autonomous() {
-	AddSequential(new Drive_Straight(6000, 0.4));
-//	AddSequential(new Turn(90));
-//	Wait(1);
-//	AddSequential(new Turn(-90));
-//	Wait(1);
-//	AddSequential(new Turn(90));
-//	Wait(1);
-//	AddSequential(new Turn(-90));
+	AddSequential(new Drive_Straight(-3909));
+	AddSequential(new Turn(-90));
+	AddSequential(new Drive_Straight(-500));
 }

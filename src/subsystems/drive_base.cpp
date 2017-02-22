@@ -31,6 +31,8 @@ gyro (new ADXRS450_Gyro()){
 
 	left_middle_motor->SetInverted(true);
 
+	reset_encoders();
+
 	gyro->Calibrate();
 }
 

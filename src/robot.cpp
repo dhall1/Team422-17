@@ -24,6 +24,7 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
+	Subsystems::ball_intake->set_intake_value(DoubleSolenoid::Value::kReverse);
 	autonomous->Cancel();
 }
 

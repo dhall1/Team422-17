@@ -11,7 +11,7 @@ right_speed (direction ? 0.4 : -0.4) {
 }
 
 void Turn::Initialize() {
-	angle += Subsystems::drive_base->get_angle();
+	Subsystems::drive_base->reset_gyro();
 }
 
 void Turn::Execute() {
