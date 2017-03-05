@@ -8,25 +8,46 @@ Drive_Straight::Drive_Straight(int distance) :
 distance (distance),
 direction (distance > 0),
 angle (Subsystems::drive_base->get_angle()),
-left_speed (direction ? -0.4 : 0.4),
-right_speed (direction ? -0.4 : 0.4) {
+left_speed (direction ? -0.3 : 0.3),
+right_speed (direction ? -0.3 : 0.3) {
 	Requires(Subsystems::drive_base);
 }
 
 void Drive_Straight::Initialize() {
 	SmartDashboard::PutNumber("Drive Straight set point (encoder ticks)", distance);
+	printf("Drive Straight set point (encoder ticks): %d", distance);
 	Subsystems::drive_base->reset_encoders();
 	Subsystems::drive_base->set_motors_normalized(left_speed, right_speed);
 }
 
 void Drive_Straight::Execute() {
-	float correction = Subsystems::drive_base->get_angle() - angle;
+	// Testing to slow down within a certain distance of the target - DOES NOT WORK
+//	bool is_left_close = (abs(Subsystems::drive_base->get_left_encoder_position()) + 500) > abs(distance);
+//	bool is_right_close = (abs(Subsystems::drive_base->get_right_encoder_position()) + 500) > abs(distance);
+//	if (is_left_close && is_right_close) {
+//		if (direction) {
+//			left_speed += 0.2;
+//			right_speed += 0.2;
+//		} else {
+//			left_speed -= 0.2;
+//			right_speed -= 0.2;
+//		}
+//	}
+	float correction = 0;
+	if (direction) {
+		correction = Subsystems::drive_base->get_angle() - angle;
+	} else {
+		correction = angle - Subsystems::drive_base->get_angle();
+	}
 	correction *= 0.075;
 	correction += 1;
 	Subsystems::drive_base->set_motors_normalized(left_speed, right_speed * correction);
 	SmartDashboard::PutNumber("Drive Base Left Encoder Position", abs(Subsystems::drive_base->get_left_encoder_position()));
+	printf("Drive Base Left Encoder Position: %d", abs(Subsystems::drive_base->get_left_encoder_position()));
 	SmartDashboard::PutNumber("Drive Base Right Encoder Position", abs(Subsystems::drive_base->get_right_encoder_position()));
+	printf("\tDrive Base Right Encoder Position: %d", abs(Subsystems::drive_base->get_right_encoder_position()));
 	SmartDashboard::PutNumber("Gyro Angle", Subsystems::drive_base->get_angle());
+	printf("\nGyro Angle: %f", Subsystems::drive_base->get_angle());
 }
 
 bool Drive_Straight::IsFinished() {

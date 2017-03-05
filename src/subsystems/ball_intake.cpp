@@ -15,10 +15,6 @@ void Ball_Intake::set_intake_value(DoubleSolenoid::Value value) {
 	intake_solenoid->Set(value);
 }
 
-DoubleSolenoid::Value Ball_Intake::get_intake_value() {
-	return intake_solenoid->Get();
-}
-
 void Ball_Intake::set_intake_motor(float value) {
 	intake_motor->Set(value);
 }
