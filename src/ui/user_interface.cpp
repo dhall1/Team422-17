@@ -4,6 +4,7 @@
 #include "../commands/toggle_lift.hpp"
 #include "../commands/toggle_shooter.hpp"
 #include "../commands/toggle_climber.hpp"
+#include "../commands/autonomous/turn.hpp"
 #include "../commands/change_shooter_speed.hpp"
 #include "../commands/set_ball_intake.hpp"
 #include "../commands/set_gear_intake.hpp"
@@ -44,4 +45,7 @@ void UI::initialize() {
 	launchpad->SWITCH_3->WhenReleased(new Toggle_Lift(false));
 	launchpad->SWITCH_4->WhenPressed(new Toggle_Shooter(true));
 	launchpad->SWITCH_4->WhenPressed(new Toggle_Shooter(false));
+
+	launchpad->PANEL_TOP_LEFT->WhenPressed(new Turn(90));
+	launchpad->PANEL_TOP_MID->WhenPressed(new Turn(-90));
 }

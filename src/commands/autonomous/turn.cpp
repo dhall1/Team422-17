@@ -32,6 +32,7 @@ void Turn::Interrupted() {
 
 void Turn::End() {
 	Subsystems::drive_base->set_motors_normalized(0, 0);
+	Subsystems::drive_base->reset_encoders();
 }
 
 bool Turn::in_range(float target, float error, float value) {

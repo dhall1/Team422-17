@@ -1,6 +1,6 @@
 #pragma once
 
-#define MK1
+//#define MK1
 
 namespace Ports {
 
@@ -37,6 +37,7 @@ namespace Ports {
 		const uint32_t	LIFT_MOTOR = 12;
 		// Ids for CANTalons on Ball Intake
 		const uint32_t	INTAKE_MOTOR = 62;
+		const uint32_t	CLIMBER_MOTOR = 0;
 #endif
 	}
 

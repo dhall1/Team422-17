@@ -11,6 +11,7 @@ angle (Subsystems::drive_base->get_angle()),
 left_speed (direction ? -0.3 : 0.3),
 right_speed (direction ? -0.3 : 0.3) {
 	Requires(Subsystems::drive_base);
+	Subsystems::drive_base->reset_encoders();
 }
 
 void Drive_Straight::Initialize() {
@@ -18,19 +19,20 @@ void Drive_Straight::Initialize() {
 	printf("Drive Straight set point (encoder ticks): %d", distance);
 	Subsystems::drive_base->reset_encoders();
 	Subsystems::drive_base->set_motors_normalized(left_speed, right_speed);
+	angle = Subsystems::drive_base->get_angle();
 }
 
 void Drive_Straight::Execute() {
-	// Testing to slow down within a certain distance of the target - DOES NOT WORK
+	// Testing to slow down within a certain distance of the target
 //	bool is_left_close = (abs(Subsystems::drive_base->get_left_encoder_position()) + 500) > abs(distance);
 //	bool is_right_close = (abs(Subsystems::drive_base->get_right_encoder_position()) + 500) > abs(distance);
 //	if (is_left_close && is_right_close) {
 //		if (direction) {
-//			left_speed += 0.2;
-//			right_speed += 0.2;
+//			left_speed = -0.2;
+//			right_speed = -0.2;
 //		} else {
-//			left_speed -= 0.2;
-//			right_speed -= 0.2;
+//			left_speed = 0.2;
+//			right_speed = 0.2;
 //		}
 //	}
 	float correction = 0;
@@ -63,4 +65,5 @@ void Drive_Straight::Interrupted() {
 
 void Drive_Straight::End() {
 	Subsystems::drive_base->set_motors_normalized(0, 0);
+	Subsystems::drive_base->reset_encoders();
 }
