@@ -2,8 +2,6 @@
 
 #include "subsystems/subsystems.hpp"
 #include "ui/user_interface.hpp"
-#include "commands/autonomous/autonomous.hpp"
-#include "commands/autonomous/autonomous2.hpp"
 
 void Robot::RobotInit() {
 	Subsystems::initialize();
@@ -12,7 +10,7 @@ void Robot::RobotInit() {
 //	autonomousChooser.AddDefault("Default Autonomous", new Autonomous());
 //	autonomousChooser.AddObject("2nd Autonomous", new Autonomous2());
 //	SmartDashboard::PutData("Autonomous Modes", &autonomousChooser);
-	autonomous = new Autonomous();
+	autonomous = new Autonomous_Left();
 }
 
 void Robot::DisabledInit() {
