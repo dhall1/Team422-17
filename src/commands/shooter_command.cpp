@@ -12,10 +12,10 @@ void Shooter_Command::Initialize() {
 }
 
 void Shooter_Command::Execute() {
-	SmartDashboard::PutNumber("Top Motor Encoder Speed", Subsystems::shooter->get_top_encoder_speed());
-	SmartDashboard::PutNumber("Top Motor Set vBus", Subsystems::shooter->get_top_speed());
-	SmartDashboard::PutNumber("Bottom Motor Encoder Speed", Subsystems::shooter->get_bottom_encoder_speed());
-	SmartDashboard::PutNumber("Bottom Motor Set vBus", Subsystems::shooter->get_bottom_speed());
+//	SmartDashboard::PutNumber("Top Motor Encoder Speed", Subsystems::shooter->get_top_encoder_speed());
+//	SmartDashboard::PutNumber("Top Motor Set vBus", Subsystems::shooter->get_top_speed());
+//	SmartDashboard::PutNumber("Bottom Motor Encoder Speed", Subsystems::shooter->get_bottom_encoder_speed());
+//	SmartDashboard::PutNumber("Bottom Motor Set vBus", Subsystems::shooter->get_bottom_speed());
 }
 
 bool Shooter_Command::IsFinished() {

@@ -15,8 +15,8 @@ right_speed (direction ? -0.3 : 0.3) {
 }
 
 void Drive_Straight::Initialize() {
-	SmartDashboard::PutNumber("Drive Straight set point (encoder ticks)", distance);
-	printf("Drive Straight set point (encoder ticks): %d", distance);
+//	SmartDashboard::PutNumber("Drive Straight set point (encoder ticks)", distance);
+//	printf("Drive Straight set point (encoder ticks): %d", distance);
 	Subsystems::drive_base->reset_encoders();
 	Subsystems::drive_base->set_motors_normalized(left_speed, right_speed);
 	angle = Subsystems::drive_base->get_angle();
@@ -44,12 +44,12 @@ void Drive_Straight::Execute() {
 	correction *= 0.075;
 	correction += 1;
 	Subsystems::drive_base->set_motors_normalized(left_speed, right_speed * correction);
-	SmartDashboard::PutNumber("Drive Base Left Encoder Position", abs(Subsystems::drive_base->get_left_encoder_position()));
-	printf("Drive Base Left Encoder Position: %d", abs(Subsystems::drive_base->get_left_encoder_position()));
-	SmartDashboard::PutNumber("Drive Base Right Encoder Position", abs(Subsystems::drive_base->get_right_encoder_position()));
-	printf("\tDrive Base Right Encoder Position: %d", abs(Subsystems::drive_base->get_right_encoder_position()));
-	SmartDashboard::PutNumber("Gyro Angle", Subsystems::drive_base->get_angle());
-	printf("\nGyro Angle: %f", Subsystems::drive_base->get_angle());
+//	SmartDashboard::PutNumber("Drive Base Left Encoder Position", abs(Subsystems::drive_base->get_left_encoder_position()));
+//	printf("Drive Base Left Encoder Position: %d", abs(Subsystems::drive_base->get_left_encoder_position()));
+//	SmartDashboard::PutNumber("Drive Base Right Encoder Position", abs(Subsystems::drive_base->get_right_encoder_position()));
+//	printf("\tDrive Base Right Encoder Position: %d", abs(Subsystems::drive_base->get_right_encoder_position()));
+//	SmartDashboard::PutNumber("Gyro Angle", Subsystems::drive_base->get_angle());
+//	printf("\nGyro Angle: %f", Subsystems::drive_base->get_angle());
 }
 
 bool Drive_Straight::IsFinished() {

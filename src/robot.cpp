@@ -6,11 +6,13 @@
 void Robot::RobotInit() {
 	Subsystems::initialize();
 	UI::initialize();
-//	autonomousChooser = SendableChooser<Command*>();
-//	autonomousChooser.AddDefault("Default Autonomous", new Autonomous());
-//	autonomousChooser.AddObject("2nd Autonomous", new Autonomous2());
-//	SmartDashboard::PutData("Autonomous Modes", &autonomousChooser);
-	autonomous = new Autonomous_Left();
+	autonomousChooser = SendableChooser<Command*>();
+	autonomousChooser.AddDefault("Center Autonomous", new Autonomous_Center());
+	autonomousChooser.AddObject("Left Autonomous", new Autonomous_Left());
+	autonomousChooser.AddObject("Right Autonomous", new Autonomous_Right());
+	SmartDashboard::PutData("Autonomous Modes", &autonomousChooser);
+//	autonomous = new Autonomous_Center();
+	CameraServer::GetInstance()->StartAutomaticCapture();
 }
 
 void Robot::DisabledInit() {
@@ -20,11 +22,11 @@ void Robot::DisabledInit() {
 void Robot::AutonomousInit() {
 	Subsystems::drive_base->reset_gyro();
 	Subsystems::drive_base->reset_encoders();
-	autonomous->Start();
-//	autonomous = (Command*) autonomousChooser.GetSelected();
-//	if (autonomous != nullptr) {
-//		autonomous->Start();
-//	}
+//	autonomous->Start();
+	autonomous = (Command*) autonomousChooser.GetSelected();
+	if (autonomous != nullptr) {
+		autonomous->Start();
+	}
 }
 
 void Robot::AutonomousPeriodic() {

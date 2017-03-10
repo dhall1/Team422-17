@@ -1,6 +1,6 @@
 #pragma once
 
-//#define MK1
+#define MK1
 
 namespace Ports {
 

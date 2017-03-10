@@ -5,8 +5,8 @@
 Turn::Turn(float angle) :
 angle (angle),
 direction(angle > 0), // true for turning right, false for turning left
-left_speed (direction ? -0.2 : 0.2),
-right_speed (direction ? 0.2 : -0.2) {
+left_speed (direction ? -0.3 : 0.3),
+right_speed (direction ? 0.3 : -0.3) {
 	Requires(Subsystems::drive_base);
 }
 

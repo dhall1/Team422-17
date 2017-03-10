@@ -21,13 +21,13 @@ void UI::initialize() {
 	launchpad = new Launchpad(1);
 	controller = new Xbox_Controller(0);
 
-	left_joystick->TRIGGER->WhenPressed(new Change_Shooter_Speed(true, 0, 0));
+//	left_joystick->TRIGGER->WhenPressed(new Change_Shooter_Speed(true, 0, 0));
 	left_joystick->BUTTON_2->WhenPressed(new Change_Shooter_Speed(false, 0, -1));
 	left_joystick->BUTTON_3->WhenPressed(new Change_Shooter_Speed(false, 0, 1));
 	left_joystick->BUTTON_4->WhenPressed(new Change_Shooter_Speed(false, 0, -0.5));
 	left_joystick->BUTTON_5->WhenPressed(new Change_Shooter_Speed(false, 0, 0.5));
 
-	right_joystick->TRIGGER->WhenPressed(new Change_Shooter_Speed(true, 1, 0));
+//	right_joystick->TRIGGER->WhenPressed(new Change_Shooter_Speed(true, 1, 0));
 	right_joystick->BUTTON_2->WhenPressed(new Change_Shooter_Speed(false, 1, -1));
 	right_joystick->BUTTON_3->WhenPressed(new Change_Shooter_Speed(false, 1, 1));
 	right_joystick->BUTTON_4->WhenPressed(new Change_Shooter_Speed(false, 1, -0.5));
@@ -35,8 +35,8 @@ void UI::initialize() {
 
 	controller->B->WhenPressed(new Set_Gear_Intake(DoubleSolenoid::Value::kForward));
 	controller->A->WhenPressed(new Set_Gear_Intake(DoubleSolenoid::Value::kReverse));
-	controller->Y->WhenPressed(new Set_Ball_Intake(DoubleSolenoid::Value::kForward));
-	controller->X->WhenPressed(new Set_Ball_Intake(DoubleSolenoid::Value::kReverse));
+	controller->X->WhenPressed(new Set_Ball_Intake(DoubleSolenoid::Value::kForward));
+	controller->Y->WhenPressed(new Set_Ball_Intake(DoubleSolenoid::Value::kReverse));
 	controller->RIGHT_BUMPER->WhenPressed(new Toggle_Climber(true));
 	controller->LEFT_BUMPER->WhenPressed(new Toggle_Climber(false));
 	launchpad->SWITCH_2->WhenPressed(new Toggle_Roller(true));
