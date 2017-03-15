@@ -2,7 +2,7 @@
 
 #include <WPILib.h>
 
-class Drive_Straight : public Command {
+class Drive_Straight : public frc::Command {
 public:
 	Drive_Straight(int distance);
 	void Initialize();

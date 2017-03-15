@@ -10,6 +10,8 @@ public:
 	bool IsFinished();
 	void Interrupted() {};
 	void End();
+private:
+	bool half_speed;
 };
 
 

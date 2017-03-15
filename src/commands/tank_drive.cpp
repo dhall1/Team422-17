@@ -3,12 +3,18 @@
 #include "../subsystems/subsystems.hpp"
 #include "../ui/user_interface.hpp"
 
-Tank_Drive::Tank_Drive() {
+Tank_Drive::Tank_Drive() : half_speed (false) {
 	Requires(Subsystems::drive_base);
 	Subsystems::drive_base->reset_encoders();
 }
 
 void Tank_Drive::Execute() {
+	if (UI::left_joystick->BUTTON_2->Get()) {
+		half_speed = true;
+	}
+	if (UI::right_joystick->BUTTON_2->Get()) {
+		half_speed = false;
+	}
 	float left, right;
 	if (UI::left_joystick->TRIGGER->Get() || UI::right_joystick->TRIGGER->Get()) {
 		left = -1 * UI::right_joystick->get_y();
@@ -18,7 +24,11 @@ void Tank_Drive::Execute() {
 		right = UI::right_joystick->get_y();
 	}
 
-	Subsystems::drive_base->set_motors_normalized(left, right);
+	if (half_speed) {
+		Subsystems::drive_base->set_motors_normalized(left / 2, right / 2);
+	} else {
+		Subsystems::drive_base->set_motors_normalized(left, right);
+	}
 
 //	SmartDashboard::PutNumber("Drive Base Left Encoder Speed", Subsystems::drive_base->get_left_encoder_speed());
 //	SmartDashboard::PutNumber("Drive Base Left Position", Subsystems::drive_base->get_left_encoder_position());

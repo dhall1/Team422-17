@@ -8,8 +8,8 @@ void Robot::RobotInit() {
 	UI::initialize();
 	autonomousChooser = SendableChooser<Command*>();
 	autonomousChooser.AddDefault("Center Autonomous", new Autonomous_Center());
-	autonomousChooser.AddObject("Left Autonomous", new Autonomous_Left());
-	autonomousChooser.AddObject("Right Autonomous", new Autonomous_Right());
+	autonomousChooser.AddObject("Baseline Autonomous", new Autonomous_Left());
+//	autonomousChooser.AddObject("Right Autonomous", new Autonomous_Right());
 	SmartDashboard::PutData("Autonomous Modes", &autonomousChooser);
 //	autonomous = new Autonomous_Center();
 	CameraServer::GetInstance()->StartAutomaticCapture();

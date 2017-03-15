@@ -1,6 +1,6 @@
 #pragma once
 
-#define MK1
+//#define MK1
 
 namespace Ports {
 
@@ -37,7 +37,7 @@ namespace Ports {
 		const uint32_t	LIFT_MOTOR = 12;
 		// Ids for CANTalons on Ball Intake
 		const uint32_t	INTAKE_MOTOR = 62;
-		const uint32_t	CLIMBER_MOTOR = 0;
+		const uint32_t	CLIMBER_MOTOR = 61;
 #endif
 	}
 
@@ -46,17 +46,17 @@ namespace Ports {
 	}
 
 	namespace Solenoids {
-#ifdef MK1
+//#ifdef MK1
 		const uint32_t	GEAR_INTAKE_FORWARD = 0,
 						GEAR_INTAKE_REVERSE = 7,
 						BALL_INTAKE_FORWARD = 1,
 						BALL_INTAKE_REVERSE = 6;
-#else
-		const uint32_t	GEAR_INTAKE_FORWARD = 1,
-						GEAR_INTAKE_REVERSE = 6,
-						BALL_INTAKE_FORWARD = 7,
-						BALL_INTAKE_REVERSE = 0;
-#endif
+//#else
+//		const uint32_t	GEAR_INTAKE_FORWARD = 1,
+//						GEAR_INTAKE_REVERSE = 6,
+//						BALL_INTAKE_FORWARD = 7,
+//						BALL_INTAKE_REVERSE = 0;
+//#endif
 	}
 
 }

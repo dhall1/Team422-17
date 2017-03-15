@@ -4,7 +4,7 @@
 
 class Toggle_Climber : public frc::Command {
 public:
-	Toggle_Climber(bool on);
+	Toggle_Climber(bool on, bool half);
 	void Initialize();
 	void Execute() {};
 	bool IsFinished();
@@ -12,6 +12,7 @@ public:
 	void End() {};
 private:
 	bool on;
+	bool half;
 };
 
 
