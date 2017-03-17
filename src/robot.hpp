@@ -1,9 +1,11 @@
 #pragma once
 
-#include "commands/autonomous/autonomous_left.hpp"
-#include "commands/autonomous/autonomous_center.hpp"
-#include "commands/autonomous/autonomous_right.hpp"
 #include <WPILib.h>
+
+#include "commands/autonomous/autonomous_baseline.hpp"
+#include "commands/autonomous/autonomous_center.hpp"
+#include "commands/autonomous/autonomous_left.hpp"
+#include "commands/autonomous/autonomous_right.hpp"
 
 class Robot : public frc::IterativeRobot {
 public:
@@ -14,7 +16,6 @@ public:
 	void TeleopInit();
 	void TeleopPeriodic();
 private:
-//	Autonomous_Center *autonomous;
 	Command *autonomous;
 	SendableChooser<Command*> autonomousChooser;
 };

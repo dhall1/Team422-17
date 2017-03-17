@@ -6,7 +6,6 @@ Ball_Intake::Ball_Intake() :
 Subsystem("Ball_Intake"),
 intake_solenoid (new DoubleSolenoid(Ports::Solenoids::BALL_INTAKE_FORWARD, Ports::Solenoids::BALL_INTAKE_REVERSE)),
 intake_motor (new CANTalon(Ports::CANBusIds::INTAKE_MOTOR)) {
-	intake_solenoid->Set(DoubleSolenoid::Value::kReverse);
 	intake_motor->SetInverted(true);
 	intake_motor->Set(0);
 }

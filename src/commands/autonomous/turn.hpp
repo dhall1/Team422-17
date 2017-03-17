@@ -1,10 +1,10 @@
 #pragma once
 
-#include <WPILib.h>
+#include "timeout_command.hpp"
 
-class Turn : public frc::Command {
+class Turn : public Timeout_Command {
 public:
-	Turn(float angle);
+	Turn(float angle, double timeout);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -15,7 +15,6 @@ private:
 	bool direction;
 	float left_speed;
 	float right_speed;
-	bool in_range(float target, float error, float value);
 };
 
 

@@ -2,7 +2,8 @@
 
 #include "../../subsystems/subsystems.hpp"
 
-Turn::Turn(float angle) :
+Turn::Turn(float angle, double timeout) :
+Timeout_Command(timeout),
 angle (angle),
 direction(angle > 0), // true for turning right, false for turning left
 left_speed (direction ? -0.3 : 0.3),
@@ -19,11 +20,13 @@ void Turn::Execute() {
 }
 
 bool Turn::IsFinished() {
+	bool is_turn_done;
 	if (direction) {
-		return Subsystems::drive_base->get_angle() > angle;
+		is_turn_done = Subsystems::drive_base->get_angle() > angle;
 	} else {
-		return Subsystems::drive_base->get_angle() < angle;
+		is_turn_done = Subsystems::drive_base->get_angle() < angle;
 	}
+	return is_turn_done || is_timed_out();
 }
 
 void Turn::Interrupted() {
@@ -34,11 +37,3 @@ void Turn::End() {
 	Subsystems::drive_base->set_motors_normalized(0, 0);
 	Subsystems::drive_base->reset_encoders();
 }
-
-bool Turn::in_range(float target, float error, float value) {
-	bool b1 = value < (target + error);
-	bool b2 = value > (target - error);
-	return b1 && b2;
-}
-
-

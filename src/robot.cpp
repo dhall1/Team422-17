@@ -7,11 +7,11 @@ void Robot::RobotInit() {
 	Subsystems::initialize();
 	UI::initialize();
 	autonomousChooser = SendableChooser<Command*>();
+	autonomousChooser.AddObject("Baseline Autonomous (Timed)", new Autonomous_Baseline());
 	autonomousChooser.AddDefault("Center Autonomous", new Autonomous_Center());
-	autonomousChooser.AddObject("Baseline Autonomous", new Autonomous_Left());
-//	autonomousChooser.AddObject("Right Autonomous", new Autonomous_Right());
+	autonomousChooser.AddObject("Left Autonomous", new Autonomous_Left());
+	autonomousChooser.AddObject("Right Autonomous", new Autonomous_Right());
 	SmartDashboard::PutData("Autonomous Modes", &autonomousChooser);
-//	autonomous = new Autonomous_Center();
 	CameraServer::GetInstance()->StartAutomaticCapture();
 }
 
@@ -22,7 +22,6 @@ void Robot::DisabledInit() {
 void Robot::AutonomousInit() {
 	Subsystems::drive_base->reset_gyro();
 	Subsystems::drive_base->reset_encoders();
-//	autonomous->Start();
 	autonomous = (Command*) autonomousChooser.GetSelected();
 	if (autonomous != nullptr) {
 		autonomous->Start();
@@ -31,6 +30,8 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
 	Scheduler::GetInstance()->Run();
+//	printf("Left encoder: %d\n", Subsystems::drive_base->get_left_encoder_position());
+//	printf("Right encoder: %d\n", Subsystems::drive_base->get_right_encoder_position());
 }
 
 void Robot::TeleopInit() {

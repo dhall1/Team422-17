@@ -4,19 +4,19 @@
 
 #include "../../subsystems/subsystems.hpp"
 
-Drive_Straight::Drive_Straight(int distance) :
+Drive_Straight::Drive_Straight(int distance, float speed, unsigned int max_iterations, double timeout) :
+Timeout_Command(timeout),
 distance (distance),
 direction (distance > 0),
 angle (Subsystems::drive_base->get_angle()),
-left_speed (direction ? -0.2 : 0.2),
-right_speed (direction ? -0.2 : 0.2) {
+left_speed (direction ? -speed : speed),
+right_speed (direction ? -speed : speed),
+max_iterations (max_iterations) {
 	Requires(Subsystems::drive_base);
 	Subsystems::drive_base->reset_encoders();
 }
 
 void Drive_Straight::Initialize() {
-//	SmartDashboard::PutNumber("Drive Straight set point (encoder ticks)", distance);
-//	printf("Drive Straight set point (encoder ticks): %d", distance);
 	Subsystems::drive_base->reset_encoders();
 	Subsystems::drive_base->set_motors_normalized(left_speed, right_speed);
 	angle = Subsystems::drive_base->get_angle();
@@ -44,18 +44,21 @@ void Drive_Straight::Execute() {
 	correction *= 0.075;
 	correction += 1;
 	Subsystems::drive_base->set_motors_normalized(left_speed, right_speed * correction);
-	SmartDashboard::PutNumber("Drive Base Left Encoder Position", abs(Subsystems::drive_base->get_left_encoder_position()));
-	printf("Drive Base Left Encoder Position %d\n", abs(Subsystems::drive_base->get_left_encoder_position()));
-	SmartDashboard::PutNumber("Drive Base Right Encoder Position", abs(Subsystems::drive_base->get_right_encoder_position()));
-	printf("Drive Base Right Encoder Position %d\n", abs(Subsystems::drive_base->get_right_encoder_position()));
-	SmartDashboard::PutNumber("Gyro Angle", Subsystems::drive_base->get_angle());
 }
 
 bool Drive_Straight::IsFinished() {
 	int left_count = abs(Subsystems::drive_base->get_left_encoder_position());
 	int right_count = abs(Subsystems::drive_base->get_right_encoder_position());
 	int abs_distance = abs(distance);
-	return (left_count > abs_distance) || (right_count > abs_distance);
+	current_iterations++;
+	bool has_reached_max_iterations = false;
+	if (left_count == 0 && right_count == 0) {
+		printf("Running based on iterations...\n");
+		if (current_iterations > max_iterations) {
+			has_reached_max_iterations = true;
+		}
+	}
+	return (left_count > abs_distance) || (right_count > abs_distance) || has_reached_max_iterations || is_timed_out();;
 }
 
 void Drive_Straight::Interrupted() {
