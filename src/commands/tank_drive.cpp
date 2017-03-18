@@ -17,24 +17,36 @@ void Tank_Drive::Execute() {
 	}
 	float left, right;
 	if (UI::left_joystick->TRIGGER->Get() || UI::right_joystick->TRIGGER->Get()) {
-		left = -1 * UI::right_joystick->get_y();
-		right = -1 * UI::left_joystick->get_y();
+		left = -1 * constrain(UI::right_joystick->get_y());
+		right = -1 * constrain(UI::left_joystick->get_y());
 	} else {
-		left = UI::left_joystick->get_y();
-		right = UI::right_joystick->get_y();
+		left = constrain(UI::left_joystick->get_y());
+		right = constrain(UI::right_joystick->get_y());
+	}
+
+	float left_difference = left - left_speed;
+	if (left_difference > MAX_CHANGE) {
+		left_speed += MAX_CHANGE;
+	} else if (left_difference < -MAX_CHANGE) {
+		left_speed -= MAX_CHANGE;
+	} else {
+		left_speed += left_difference;
+	}
+
+	float right_difference = right - right_speed;
+	if (right_difference > MAX_CHANGE) {
+		right_speed += MAX_CHANGE;
+	} else if (right_difference < -MAX_CHANGE) {
+		right_speed -= MAX_CHANGE;
+	} else {
+		right_speed += right_difference;
 	}
 
 	if (half_speed) {
-		Subsystems::drive_base->set_motors_normalized(left / 2, right / 2);
+		Subsystems::drive_base->set_motors_normalized(left_speed / 2, right_speed / 2);
 	} else {
-		Subsystems::drive_base->set_motors_normalized(left, right);
+		Subsystems::drive_base->set_motors_normalized(left_speed, right_speed);
 	}
-
-//	SmartDashboard::PutNumber("Drive Base Left Encoder Speed", Subsystems::drive_base->get_left_encoder_speed());
-//	SmartDashboard::PutNumber("Drive Base Left Position", Subsystems::drive_base->get_left_encoder_position());
-//	SmartDashboard::PutNumber("Drive Base Right Encoder Speed", Subsystems::drive_base->get_right_encoder_speed());
-//	SmartDashboard::PutNumber("Drive Base Right Position", Subsystems::drive_base->get_right_encoder_position());
-//	SmartDashboard::PutNumber("Gyro Angle", Subsystems::drive_base->get_angle());
 }
 
 bool Tank_Drive::IsFinished() {
@@ -43,4 +55,13 @@ bool Tank_Drive::IsFinished() {
 
 void Tank_Drive::End() {
 	Subsystems::drive_base->set_motors_normalized(0, 0);
+}
+
+float Tank_Drive::constrain(float input) {
+	if (input > 0.85) {
+		return 0.85;
+	} else if (input < -0.85) {
+		return -0.85;
+	}
+	return input;
 }

@@ -25,6 +25,9 @@ gyro (new ADXRS450_Gyro()){
 	// Middle motor set to master motor
 	left_middle_motor->Set(0);
 	right_middle_motor->Set(0);
+	// Set feedback devices
+	left_middle_motor->SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
+	right_middle_motor->SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
 	// Set 12 encoder ticks per revolution
 	left_middle_motor->ConfigEncoderCodesPerRev(128);
 	right_middle_motor->ConfigEncoderCodesPerRev(128);
@@ -41,8 +44,6 @@ void Drive_Base::InitDefaultCommand() {
 }
 
 void Drive_Base::set_motors_normalized(float left, float right) {
-	left = constrain(left);
-	right = constrain(right);
 	left_middle_motor->Set(left);
 	right_middle_motor->Set(right);
 }
@@ -74,13 +75,4 @@ float Drive_Base::get_angle() {
 
 void Drive_Base::reset_gyro() {
 	gyro->Reset();
-}
-
-float Drive_Base::constrain(float input) {
-	if (input > 0.85) {
-		return 0.85;
-	} else if (input < -0.85) {
-		return -0.85;
-	}
-	return input;
 }

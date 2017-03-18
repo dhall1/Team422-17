@@ -23,7 +23,4 @@ private:
 				*right_middle_motor,
 				*right_rear_motor;
 	ADXRS450_Gyro *gyro;
-	float constrain(float input);
 };
-
-

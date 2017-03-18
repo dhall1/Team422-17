@@ -12,6 +12,10 @@ public:
 	void End();
 private:
 	bool half_speed;
+	float left_speed = 0;
+	float right_speed = 0;
+	const float MAX_CHANGE = 0.03;
+	float constrain(float input);
 };
 
 
