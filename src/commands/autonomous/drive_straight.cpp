@@ -53,11 +53,20 @@ bool Drive_Straight::IsFinished() {
 	current_iterations++;
 	bool has_reached_max_iterations = false;
 	if (left_count == 0 && right_count == 0) {
-		printf("Running based on iterations...\n");
+		printf("Running based on iterations (%d)...\n", current_iterations);
 		if (current_iterations > max_iterations) {
 			has_reached_max_iterations = true;
 		}
+	} else {
+		printf("Running based on encoders...\n");
+		printf("Left encoder: %d", Subsystems::drive_base->get_left_encoder_position());
+		printf("Right encoder: %d", Subsystems::drive_base->get_left_encoder_position());
+
 	}
+//	bool done = (left_count > abs_distance) || (right_count > abs_distance) /*|| has_reached_max_iterations*/ || is_timed_out();
+//	if (done) {
+//		printf("Iterations: %d\n", current_iterations);
+//	}
 	return (left_count > abs_distance) || (right_count > abs_distance) || has_reached_max_iterations || is_timed_out();;
 }
 

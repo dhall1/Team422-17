@@ -8,7 +8,8 @@ public:
 	Climber();
 	void set_motor(float speed);
 private:
-	CANTalon *climber;
+	CANTalon *climber1;
+	CANTalon *climber2;
 	float constrain(float input);
 };
 

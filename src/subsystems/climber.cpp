@@ -4,12 +4,17 @@
 
 Climber::Climber() :
 Subsystem("Climber"),
-climber (new CANTalon(Ports::CANBusIds::CLIMBER_MOTOR)){
-	climber->Set(0);
+climber1 (new CANTalon(Ports::CANBusIds::CLIMBER_MOTOR)),
+climber2 (new CANTalon(Ports::CANBusIds::INTAKE_MOTOR)) {
+	climber1->SetInverted(true);
+	climber2->SetInverted(true);
+	climber1->Set(0);
+	climber2->Set(0);
 }
 
 void Climber::set_motor(float speed) {
-	climber->Set(constrain(speed));
+	climber1->Set(constrain(speed));
+	climber2->Set(constrain(speed));
 }
 
 float Climber::constrain(float input) {

@@ -7,10 +7,8 @@ class Ball_Intake : public Subsystem {
 public:
 	Ball_Intake();
 	void set_intake_value(DoubleSolenoid::Value value);
-	void set_intake_motor(float value);
 private:
 	DoubleSolenoid *intake_solenoid;
-	CANTalon *intake_motor;
 };
 
 
