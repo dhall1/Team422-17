@@ -18,6 +18,8 @@ public:
 private:
 	Command *autonomous;
 	SendableChooser<Command*> autonomousChooser;
+	cs::UsbCamera camera1;
+	cs::UsbCamera camera2;
 };
 
 

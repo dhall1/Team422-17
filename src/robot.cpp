@@ -12,7 +12,8 @@ void Robot::RobotInit() {
 	autonomousChooser.AddObject("Left Autonomous", new Autonomous_Left());
 	autonomousChooser.AddObject("Right Autonomous", new Autonomous_Right());
 	SmartDashboard::PutData("Autonomous Modes", &autonomousChooser);
-	CameraServer::GetInstance()->StartAutomaticCapture();
+	camera1 = CameraServer::GetInstance()->StartAutomaticCapture();
+	camera2 = CameraServer::GetInstance()->StartAutomaticCapture();
 }
 
 void Robot::DisabledInit() {
@@ -30,8 +31,6 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
 	Scheduler::GetInstance()->Run();
-//	printf("Left encoder: %d\n", Subsystems::drive_base->get_left_encoder_position());
-//	printf("Right encoder: %d\n", Subsystems::drive_base->get_right_encoder_position());
 }
 
 void Robot::TeleopInit() {
