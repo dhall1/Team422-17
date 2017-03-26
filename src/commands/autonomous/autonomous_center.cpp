@@ -7,6 +7,6 @@
 
 Autonomous_Center::Autonomous_Center() {
 	AddSequential(new Set_Ball_Intake(DoubleSolenoid::Value::kForward));
-	AddSequential(new Drive_Straight(3400, 0.25, 255, 2.6)); //3424 or 3400
+	AddSequential(new Drive_Straight(3400, 0.25, 255, 3.5)); //3424 or 3400
 	AddSequential(new Set_Gear_Intake(DoubleSolenoid::Value::kForward));
 }

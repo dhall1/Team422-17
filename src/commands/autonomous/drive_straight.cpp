@@ -63,11 +63,16 @@ bool Drive_Straight::IsFinished() {
 		printf("Right encoder: %d", Subsystems::drive_base->get_left_encoder_position());
 
 	}
+	printf("Left encoder: %d", Subsystems::drive_base->get_left_encoder_position());
+	printf("Right encoder: %d", Subsystems::drive_base->get_left_encoder_position());
 //	bool done = (left_count > abs_distance) || (right_count > abs_distance) /*|| has_reached_max_iterations*/ || is_timed_out();
 //	if (done) {
 //		printf("Iterations: %d\n", current_iterations);
 //	}
-	return (left_count > abs_distance) || (right_count > abs_distance) || has_reached_max_iterations || is_timed_out();;
+	if (is_timed_out()) {
+		printf("Timed out...\n");
+	}
+	return /*(left_count > abs_distance) || (right_count > abs_distance) ||/* has_reached_max_iterations ||*/ is_timed_out();
 }
 
 void Drive_Straight::Interrupted() {

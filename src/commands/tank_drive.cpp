@@ -25,31 +25,37 @@ void Tank_Drive::Execute() {
 		right = UI::right_joystick->get_y();
 	}
 
-	float left_difference = left - left_speed;
-	if (left_difference > MAX_CHANGE) {
-		left_speed += MAX_CHANGE;
-	} else if (left_difference < -MAX_CHANGE) {
-		left_speed -= MAX_CHANGE;
+	if (UI::left_joystick->BUTTON_3->Get()) {
+		left_speed = left;
+		right_speed = right;
 	} else {
-		left_speed += left_difference;
+		float left_difference = left - left_speed;
+		if (left_difference > MAX_CHANGE) {
+			left_speed += MAX_CHANGE;
+		} else if (left_difference < -MAX_CHANGE) {
+			left_speed -= MAX_CHANGE;
+		} else {
+			left_speed += left_difference;
+		}
+
+		float right_difference = right - right_speed;
+		if (right_difference > MAX_CHANGE) {
+			right_speed += MAX_CHANGE;
+		} else if (right_difference < -MAX_CHANGE) {
+			right_speed -= MAX_CHANGE;
+		} else {
+			right_speed += right_difference;
+		}
+		left_speed = constrain(left_speed);
+		right_speed = constrain(right_speed);
 	}
 
-	float right_difference = right - right_speed;
-	if (right_difference > MAX_CHANGE) {
-		right_speed += MAX_CHANGE;
-	} else if (right_difference < -MAX_CHANGE) {
-		right_speed -= MAX_CHANGE;
-	} else {
-		right_speed += right_difference;
-	}
 
-	left_speed = constrain(left_speed);
-	right_speed = constrain(right_speed);
 
 	if (half_speed) {
 		Subsystems::drive_base->set_motors_normalized(left_speed / 2, right_speed / 2);
 	} else {
-		Subsystems::drive_base->set_motors_normalized(left_speed, right_speed);
+		Subsystems::drive_base->set_motors_normalized(left_speed * 0.8, right_speed * 0.8);
 	}
 }
 
@@ -62,10 +68,10 @@ void Tank_Drive::End() {
 }
 
 float Tank_Drive::constrain(float input) {
-	if (input > 0.85) {
-		return 0.85;
-	} else if (input < -0.85) {
-		return -0.85;
+	if (input > 1) {
+		return 1;
+	} else if (input < -1) {
+		return -1;
 	}
 	return input;
 }
