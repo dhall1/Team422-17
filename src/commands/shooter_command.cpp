@@ -23,6 +23,6 @@ bool Shooter_Command::IsFinished() {
 }
 
 void Shooter_Command::End() {
-	Subsystems::shooter->set_top_speed(0);
-	Subsystems::shooter->set_bottom_speed(0);
+	Subsystems::shooter->set_back_speed(0);
+	Subsystems::shooter->set_front_speed(0);
 }

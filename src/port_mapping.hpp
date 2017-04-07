@@ -12,8 +12,8 @@ namespace Ports {
 						LEFT_MIDDLE_MOTOR = 46,
 						LEFT_REAR_MOTOR = 41,
 						RIGHT_FRONT_MOTOR = 39,
-						RIGHT_MIDDLE_MOTOR = 43,
-						RIGHT_REAR_MOTOR = 44;
+						RIGHT_MIDDLE_MOTOR = 44,
+						RIGHT_REAR_MOTOR = 43;
 		// Ids for CANTalons on Shooter
 		const uint32_t	SHOOTER_TOP = 38,
 						SHOOTER_BOTTOM = 6;
@@ -24,8 +24,8 @@ namespace Ports {
 		const uint32_t	CLIMBER_MOTOR = 56;
 #else
 		// Ids for CANTalons on Drive Base
-		const uint32_t	LEFT_FRONT_MOTOR = 13,
-						LEFT_MIDDLE_MOTOR = 23,
+		const uint32_t	LEFT_FRONT_MOTOR = 23,
+						LEFT_MIDDLE_MOTOR = 13,
 						LEFT_REAR_MOTOR = 21,
 						RIGHT_FRONT_MOTOR = 16,
 						RIGHT_MIDDLE_MOTOR = 10,

@@ -10,10 +10,15 @@ void Robot::RobotInit() {
 	autonomousChooser.AddObject("Baseline Autonomous (Timed)", new Autonomous_Baseline());
 	autonomousChooser.AddDefault("Center Autonomous", new Autonomous_Center());
 	autonomousChooser.AddObject("Left Autonomous", new Autonomous_Left());
+	autonomousChooser.AddObject("Left Boiler Autonomous", new Autonomous_Boiler_Left());
 	autonomousChooser.AddObject("Right Autonomous", new Autonomous_Right());
+	autonomousChooser.AddObject("Right Boiler Autonomous", new Autonomous_Boiler_Right());
 	SmartDashboard::PutData("Autonomous Modes", &autonomousChooser);
 	camera1 = CameraServer::GetInstance()->StartAutomaticCapture();
 	camera2 = CameraServer::GetInstance()->StartAutomaticCapture();
+	camera1.SetFPS(10);
+	camera2.SetFPS(10);
+
 }
 
 void Robot::DisabledInit() {
@@ -31,6 +36,9 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
 	Scheduler::GetInstance()->Run();
+	SmartDashboard::PutNumber("Drive Base Left Encoder Position", Subsystems::drive_base->get_left_encoder_position());
+	SmartDashboard::PutNumber("Drive Base Right Encoder Position", Subsystems::drive_base->get_right_encoder_position());
+	SmartDashboard::PutNumber("Gyro Angle", Subsystems::drive_base->get_angle());
 }
 
 void Robot::TeleopInit() {
@@ -38,11 +46,16 @@ void Robot::TeleopInit() {
 		autonomous->Cancel();
 	}
 	Subsystems::ball_intake->set_intake_value(DoubleSolenoid::Value::kReverse);
+	Subsystems::drive_base->reset_encoders();
 }
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
-	printf("Gyro: %f\n", Subsystems::drive_base->get_angle());
+	SmartDashboard::PutNumber("Back Shooter", Subsystems::shooter->get_front_speed());
+	SmartDashboard::PutNumber("Front Shooter", Subsystems::shooter->get_back_speed());
+	SmartDashboard::PutNumber("Drive Base Left Encoder Position", Subsystems::drive_base->get_left_encoder_position());
+	SmartDashboard::PutNumber("Drive Base Right Encoder Position", Subsystems::drive_base->get_right_encoder_position());
+	SmartDashboard::PutNumber("Gyro Angle", Subsystems::drive_base->get_angle());
 }
 
 START_ROBOT_CLASS(Robot);

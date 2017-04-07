@@ -3,5 +3,5 @@
 #include "drive_straight.hpp"
 
 Autonomous_Baseline::Autonomous_Baseline() {
-	AddSequential(new Drive_Straight(10000, 0.3, 10, 3.5));
+	AddSequential(new Drive_Straight(10000, 0.3, 3.5));
 }

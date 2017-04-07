@@ -24,29 +24,23 @@ void UI::initialize() {
 //	left_joystick->TRIGGER->WhenPressed(new Change_Shooter_Speed(true, 0, 0));
 //	left_joystick->BUTTON_2->WhenPressed(new Change_Shooter_Speed(false, 0, -1));
 //	left_joystick->BUTTON_3->WhenPressed(new Change_Shooter_Speed(false, 0, 1));
-//	left_joystick->BUTTON_4->WhenPressed(new Change_Shooter_Speed(false, 0, -0.5));
-//	left_joystick->BUTTON_5->WhenPressed(new Change_Shooter_Speed(false, 0, 0.5));
+	left_joystick->BUTTON_4->WhenPressed(new Change_Shooter_Speed(false, 0, -0.5));
+	left_joystick->BUTTON_5->WhenPressed(new Change_Shooter_Speed(false, 0, 0.5));
 
 //	right_joystick->TRIGGER->WhenPressed(new Change_Shooter_Speed(true, 1, 0));
 //	right_joystick->BUTTON_2->WhenPressed(new Change_Shooter_Speed(false, 1, -1));
 //	right_joystick->BUTTON_3->WhenPressed(new Change_Shooter_Speed(false, 1, 1));
-//	right_joystick->BUTTON_4->WhenPressed(new Change_Shooter_Speed(false, 1, -0.5));
-//	right_joystick->BUTTON_5->WhenPressed(new Change_Shooter_Speed(false, 1, 0.5));
+	right_joystick->BUTTON_4->WhenPressed(new Change_Shooter_Speed(false, 1, -0.5));
+	right_joystick->BUTTON_5->WhenPressed(new Change_Shooter_Speed(false, 1, 0.5));
 
-//	controller->B->WhenPressed(new Set_Gear_Intake(DoubleSolenoid::Value::kForward));
-//	controller->A->WhenPressed(new Set_Gear_Intake(DoubleSolenoid::Value::kReverse));
 	controller->X->WhenPressed(new Set_Ball_Intake(DoubleSolenoid::Value::kForward));
-//	controller->Y->WhenPressed(new Set_Ball_Intake(DoubleSolenoid::Value::kReverse));
+	controller->Y->WhenPressed(new Set_Ball_Intake(DoubleSolenoid::Value::kReverse));
 	controller->RIGHT_BUMPER->WhenPressed(new Toggle_Climber(true, true));
 	controller->RIGHT_BUMPER->WhenReleased(new Toggle_Climber(false, true));
 	controller->LEFT_BUMPER->WhenPressed(new Toggle_Climber(true, false));
 	controller->LEFT_BUMPER->WhenReleased(new Toggle_Climber(false, false));
-//	launchpad->SWITCH_2->WhenPressed(new Toggle_Roller(true));
-//	launchpad->SWITCH_2->WhenReleased(new Toggle_Roller(false));
 	launchpad->SWITCH_3->WhenPressed(new Toggle_Lift(true));
 	launchpad->SWITCH_3->WhenReleased(new Toggle_Lift(false));
 	launchpad->SWITCH_4->WhenPressed(new Toggle_Shooter(true));
 	launchpad->SWITCH_4->WhenReleased(new Toggle_Shooter(false));
-
-	launchpad->PANEL_TOP_MID->WhenPressed(new Set_Ball_Intake(DoubleSolenoid::Value::kReverse));
 }
