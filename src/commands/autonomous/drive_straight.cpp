@@ -29,7 +29,7 @@ void Drive_Straight::Execute() {
 	} else {
 		correction = angle - Subsystems::drive_base->get_angle();
 	}
-	correction *= 0.075;
+	correction *= Constant::GYRO_CORRECTION;
 	correction += 1;
 	Subsystems::drive_base->set_motors_normalized(left_speed, right_speed * correction);
 }
@@ -41,7 +41,7 @@ bool Drive_Straight::IsFinished() {
 	if (is_timed_out()) {
 		printf("Timed out");
 	}
-	return /*(left_count > abs_distance) || (right_count > abs_distance) ||*/ is_timed_out();
+	return (left_count > abs_distance) || (right_count > abs_distance) || is_timed_out();
 }
 
 void Drive_Straight::Interrupted() {

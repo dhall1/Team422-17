@@ -2,6 +2,7 @@
 
 #include "subsystems/subsystems.hpp"
 #include "ui/user_interface.hpp"
+#include "commands/autonomous/drive_straight.hpp"
 
 void Robot::RobotInit() {
 	Subsystems::initialize();
@@ -18,7 +19,7 @@ void Robot::RobotInit() {
 	camera2 = CameraServer::GetInstance()->StartAutomaticCapture();
 	camera1.SetFPS(10);
 	camera2.SetFPS(10);
-
+	SmartDashboard::PutNumber("Gyro Correction", 0.2);
 }
 
 void Robot::DisabledInit() {
@@ -26,6 +27,7 @@ void Robot::DisabledInit() {
 }
 
 void Robot::AutonomousInit() {
+	Constant::GYRO_CORRECTION = SmartDashboard::GetNumber("Gyro Correction", 0.2);
 	Subsystems::drive_base->reset_gyro();
 	Subsystems::drive_base->reset_encoders();
 	autonomous = (Command*) autonomousChooser.GetSelected();
